@@ -10,3 +10,5 @@ class Product(models.Model):
     pre_qte_stock = fileds.AppDecimalField(default=0.0)
     value = fileds.AppDecimalField(default=0.0)
     pre_value = fileds.AppDecimalField(default=0.0)
+
+    unite = models.CharField(max_length=10, default='unite')
