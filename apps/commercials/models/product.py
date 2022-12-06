@@ -1,6 +1,7 @@
 from django.db import models
 
 from apps.application import fileds
+from datetime import datetime
 
 
 class Product(models.Model):
@@ -23,3 +24,5 @@ class StockMovement(models.Model):
     prix_unite = fileds.AppDecimalField()
     out = models.BooleanField()
     document = models.CharField(max_length=255)
+
+    date_creation = models.DateTimeField(auto_now_add=True)
