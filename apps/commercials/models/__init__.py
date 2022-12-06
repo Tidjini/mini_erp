@@ -1,2 +1,2 @@
-from .product import Product
+from .product import Product, StockMovement
 from .reception import DetailReception

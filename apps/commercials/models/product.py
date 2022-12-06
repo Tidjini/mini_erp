@@ -14,3 +14,12 @@ class Product(models.Model):
     unite = models.CharField(max_length=10, default='unite')
 
     # todo review the delete process, not delete or delete with conditions
+
+
+class StockMovement(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='movements')
+    qte = fileds.AppDecimalField()
+    prix_unite = fileds.AppDecimalField()
+    out = models.BooleanField()
+    document = models.CharField(max_length=255)
