@@ -22,7 +22,17 @@ class StockMovement(models.Model):
         Product, on_delete=models.CASCADE, related_name='movements')
     qte = fileds.AppDecimalField()
     prix_unite = fileds.AppDecimalField()
-    out = models.BooleanField()
+    out = models.BooleanField(default=False)
     document = models.CharField(max_length=255)
 
     date_creation = models.DateTimeField(auto_now_add=True)
+
+    # def save(self, *args, **kwargs):
+    #     # if stock out remove qte, else add this reception
+    #     sign = 1
+    #     if self.out:
+    #         sign = -1
+    #     self.product.qte_stock += self.qte * sign
+    #     self.product.value += self.qte * sign * self.prix_unite
+    #     self.product.save()
+    #     return super(StockMovement, self).save(*args, **kwargs)

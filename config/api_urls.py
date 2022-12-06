@@ -11,6 +11,7 @@ router.register('discussions', chats.DiscussionApiViewSet)
 router.register('messages', chats.MessageApiViewSet)
 # commecrials
 router.register('products', commercials.ProductApiViewSet)
+router.register('stock-movements', commercials.StockMovementApiViewSet)
 
 
 urlpatterns = [
