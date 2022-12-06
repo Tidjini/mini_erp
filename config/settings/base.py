@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "apps.chats",
     "apps.communications",
-    "apps.commercial"
+    "apps.commercials"
 ]
 
 AUTH_USER_MODEL = "chats.Utilisateur"
