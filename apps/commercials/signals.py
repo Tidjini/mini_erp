@@ -36,7 +36,9 @@ def remove_stock(sender, instance, **kwargs):
                 sign = -1
 
             instance.product.qte_stock -= old.qte * sign
-            instance.product.value -= old.qte * sign * old.prix_unite
+            # update value just for receptions
+            if not old.out:
+                instance.product.value -= old.qte * sign * old.prix_unite
 
             instance.product.save()
         except Exception as e:
@@ -50,7 +52,10 @@ def add_stock(sender, instance, created, **kwargs):
     if instance.out:
         sign = -1
     instance.product.qte_stock += instance.qte * sign
-    instance.product.value += instance.qte * sign * instance.prix_unite
+
+    # update value just for receptions
+    if not instance.out:
+        instance.product.value += instance.qte * sign * instance.prix_unite
 
     if instance.product.qte_stock < 0:
         instance.product.qte_stock = 0
