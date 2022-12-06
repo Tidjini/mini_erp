@@ -12,3 +12,5 @@ class Product(models.Model):
     pre_value = fileds.AppDecimalField(default=0.0)
 
     unite = models.CharField(max_length=10, default='unite')
+
+    # todo review the delete process, not delete or delete with conditions
