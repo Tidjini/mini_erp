@@ -4,17 +4,17 @@ from apps.application import fileds
 
 class Tier(models.Model):
     TYPES = (
-        ('c', 'client'),
-        ('p', 'provider'), 
-        ('f', 'fabricant'),
-        ('t', 'tier'),
+        ("c", "client"),
+        ("p", "provider"),
+        ("f", "fabricant"),
+        ("t", "tier"),
     )
-    
+
     # raison social
     label = models.CharField(max_length=255)
     debit = fileds.AppDecimalField()
     credit = fileds.AppDecimalField()
-    type = models.CharField(max_length=1, choices=TYPES ,default='t')
+    type = models.CharField(max_length=1, choices=TYPES, default="t")
 
     @property
     def balance(self):
@@ -22,4 +22,7 @@ class Tier(models.Model):
 
 
 class Payment(models.Model):
-    tier = 
+    tier = models.ForeignKey(Tier, on_delete=models.CASCADE, related_name="payments")
+    label = models.CharField(max_length=255)
+    montant = fileds.AppDecimalField()
+    out = models.BooleanField(default=False)

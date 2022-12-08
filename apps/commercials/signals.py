@@ -62,3 +62,14 @@ def add_stock(sender, instance, created, **kwargs):
     if instance.product.value < 0:
         instance.product.qte_stock = 0
     instance.product.save()
+
+
+@receiver(post_save, sender=models.Payment)
+def update_balance(sender, instance, created, **kwargs):
+
+    if instance.out:
+        instance.tier.credit += instance.motant
+    else:
+        instance.tier.debit += instance.motant
+
+    instance.tier.save()
