@@ -67,6 +67,9 @@ def add_stock(sender, instance, created, **kwargs):
 @receiver(post_save, sender=models.Payment)
 def update_balance(sender, instance, created, **kwargs):
 
+    if not instance.tier:
+        return
+
     if instance.out:
         instance.tier.credit += instance.motant
     else:
