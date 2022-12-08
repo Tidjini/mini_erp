@@ -2,7 +2,9 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 
-from . import models
+from . import models, serializers
+from apps.communications.views import sio
+
 
 # todo later
 # @receiver(pre_save, sender=models.DetailReception)
@@ -76,3 +78,5 @@ def update_balance(sender, instance, created, **kwargs):
         instance.tier.debit += instance.montant
 
     instance.tier.save()
+
+    sio.emit('payment_added', instance.label)
