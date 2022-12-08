@@ -26,3 +26,4 @@ class Payment(models.Model):
     label = models.CharField(max_length=255)
     montant = fileds.AppDecimalField()
     out = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)

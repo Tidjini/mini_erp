@@ -25,7 +25,7 @@ class StockMovement(models.Model):
     out = models.BooleanField(default=False)
     document = models.CharField(max_length=255)
 
-    date_creation = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     # def save(self, *args, **kwargs):
     #     # if stock out remove qte, else add this reception
