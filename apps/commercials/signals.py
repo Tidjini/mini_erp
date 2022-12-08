@@ -71,8 +71,8 @@ def update_balance(sender, instance, created, **kwargs):
         return
 
     if instance.out:
-        instance.tier.credit += instance.motant
+        instance.tier.credit += instance.montant
     else:
-        instance.tier.debit += instance.motant
+        instance.tier.debit += instance.montant
 
     instance.tier.save()

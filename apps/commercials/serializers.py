@@ -34,7 +34,7 @@ class TierSerializer(serializers.ModelSerializer):
 
 
 class PaymentSerializer(serializers.ModelSerializer):
-    iter_item = TierSerializer(source='tier', read_only=True)
+    tier_item = TierSerializer(source='tier', read_only=True)
 
     class Meta:
         model = models.Payment

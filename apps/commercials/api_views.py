@@ -17,15 +17,13 @@ class StockMovementApiViewSet(viewsets.ModelViewSet):
     permission_classes = permissions.IsAuthenticated,
 
 
-
 class TierApiViewSet(viewsets.ModelViewSet):
     queryset = models.Tier.objects.order_by('-id')
     serializer_class = serializers.TierSerializer
-    permission_classes = permissions.IsAuthenticated
+    permission_classes = permissions.IsAuthenticated,
+
 
 class PaymentApiViewSet(viewsets.ModelViewSet):
     queryset = models.Payment.objects.order_by('-created_at')
     serializer_class = serializers.PaymentSerializer
-    permission_classes = permissions.IsAuthenticated
-
-    
+    permission_classes = permissions.IsAuthenticated,
