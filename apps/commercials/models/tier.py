@@ -2,6 +2,8 @@ from django.db import models
 from apps.application import fileds
 
 
+# todo set specific collections; Tiers, Providers, Fabricants, Clients
+
 class Tier(models.Model):
     TYPES = (
         ("c", "client"),
@@ -20,7 +22,7 @@ class Tier(models.Model):
     def balance(self):
         return self.debit - self.credit
 
-
+# todo set specific collections; Payements Tiers,Payements Providers, Payements Fabricants,Payements Clients
 class Payment(models.Model):
     tier = models.ForeignKey(Tier, on_delete=models.CASCADE, related_name="payments")
     label = models.CharField(max_length=255)

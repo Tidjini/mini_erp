@@ -10,6 +10,8 @@ router.register('utilisateurs', chats.UtilisateurListApiViewSet)
 router.register('discussions', chats.DiscussionApiViewSet)
 router.register('messages', chats.MessageApiViewSet)
 # commecrials
+router.register('tiers', commercials.TierApiViewSet)
+router.register('payments', commercials.PaymentApiViewSet)
 router.register('products', commercials.ProductApiViewSet)
 router.register('stock-movements', commercials.StockMovementApiViewSet)
 
