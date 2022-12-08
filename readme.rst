@@ -29,3 +29,25 @@ A resend Quit message and restart same process
 //- get list of discussions -> from here you can go to list users (contacts)
 //- create a discussion
 //- discussion -> activity
+
+
+TODO
+product filter, voir la fiche de stock de ton logiciel: dans l'application REACT
+	- name, ref,
+	- approvisionnement stock
+	- avec de la responsive
+
+fournisseur habituel, unite de mesures .... fiche de produit de tous famille, avec ma propre data base,
+- resturctured the application
+
+
+- stock Article - MP - PF - PSF - ARTICLE (Achat ordinare) / SERVICE, TVA sur article ,, les prix
+- Famille et sous Famille
+- unite de mesures
+- tva
+- famille / sous famille
+- service
+
+
+- Stock Mouvement -> entre/produit/qte/unite/prix_unite/document/numero/descirption/ valeur de sortie, CUMP , (no gestion des lot)
+database infra/promag
