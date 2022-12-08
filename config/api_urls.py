@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 
 from apps.chats import api_views as chats
 from apps.commercials import api_views as commercials
+from apps.tasks import api_views as tasks
 
 router = DefaultRouter()
 # chats
@@ -14,6 +15,8 @@ router.register('tiers', commercials.TierApiViewSet)
 router.register('payments', commercials.PaymentApiViewSet)
 router.register('products', commercials.ProductApiViewSet)
 router.register('stock-movements', commercials.StockMovementApiViewSet)
+#tasks
+router.register('tasks', tasks.TaskApiViewSet)
 
 
 urlpatterns = [
