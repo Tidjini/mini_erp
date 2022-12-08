@@ -4,7 +4,8 @@ from rest_framework.authtoken.models import Token
 
 from .mixins import TimeStampedModel, ModelUtilsMixin
 
-
+# Todo Vercel problem with staticmethods
+# TODO set Tasks , Created Tasks in Managers
 class Utilisateur(AbstractBaseUser, ModelUtilsMixin, TimeStampedModel):
 
     # override primary key with char key, review for UUID
