@@ -25,15 +25,16 @@ class StockMovementSerializer(serializers.ModelSerializer):
 
 class TierSerializer(serializers.ModelSerializer):
 
+    balance = serializers.ReadOnlyField()
+
     class Meta:
         model = models.Tier
         fields = '__all__'
         read_only_fields = 'id',
 
 
-
 class PaymentSerializer(serializers.ModelSerializer):
-    iter_item = TierSerializer(source='tier', read_only = True)
+    iter_item = TierSerializer(source='tier', read_only=True)
 
     class Meta:
         model = models.Payment
