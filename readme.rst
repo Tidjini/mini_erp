@@ -51,3 +51,5 @@ fournisseur habituel, unite de mesures .... fiche de produit de tous famille, av
 
 - Stock Mouvement -> entre/produit/qte/unite/prix_unite/document/numero/descirption/ valeur de sortie, CUMP , (no gestion des lot)
 database infra/promag
+
+- Facture Instance Image. continue in local
