@@ -6,7 +6,7 @@ from apps.application import models as app_models
 
 class Unite(app_models.UtilsMixin):
 
-    unite = models.CharField(max_length=15)
+    name = models.CharField(max_length=15)
     symbole = models.CharField(max_length=15)
     coefficient = models.DecimalField(
         decimal_places=3, max_digits=8, default=1)
@@ -16,10 +16,13 @@ class Unite(app_models.UtilsMixin):
 
 
 class Category(app_models.UtilsMixin):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
 
 
 class SubCategory(app_models.UtilsMixin):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='sub_categories')
     name = models.CharField(max_length=50)
+
+    class Meta:
+        unique_together = ('name', 'category')

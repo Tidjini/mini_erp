@@ -20,6 +20,8 @@ router.register('stock-movements', commercials.StockMovementApiViewSet)
 router.register('tasks', tasks.TaskApiViewSet)
 # stocks
 router.register('unites', stock.UniteApiViewSet)
+router.register('categories', stock.CategoryApiViewSet)
+router.register('sub-categories', stock.SubCategoryApiViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
