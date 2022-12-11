@@ -28,3 +28,11 @@ class SubCategoryApiViewSet(viewsets.ModelViewSet):
     filter_backends = DjangoFilterBackend,
     filterset_fields = 'category',
     pagination_class = None
+
+
+class ProductApiViewSet(viewsets.ModelViewSet):
+    queryset = models.Product.objects.all()
+    serializer_class = serializers.SubCategorySerializer
+    permission_classes = permissions.IsAuthenticated,
+    filter_backends = DjangoFilterBackend,
+    filterset_fields = 'category', 'sub_category', 'provider', 'maker', 'type'

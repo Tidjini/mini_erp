@@ -53,8 +53,14 @@ class Product(app_models.UtilsMixin):
     # purchase rate, compare to last (Todo or maybe the max) purchase
     purchase_rate = models.FloatField(default=5)
 
+    # to track latest updated, order
+    updated_at = models.DateTimeField(auto_now_add=True)
     # custom manager
     objects = ProductQuerySet.as_manager()
+
+    class Meta:
+        ordering = '-updated_at',
+
 
 # last purchase informations
 # last buy informations
