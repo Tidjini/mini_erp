@@ -8,5 +8,5 @@ class TvaApiViewSet(viewsets.ModelViewSet):
 
     queryset = models.Tva.objects.all()
     serializer_class = serializers.TvaSerializer
-    permission_classes = permissions.IsAuthenticated
+    permission_classes = permissions.IsAuthenticated,
     pagination_class = None

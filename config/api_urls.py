@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+from apps.general import api_views as general
 from apps.chats import api_views as chats
 from apps.commercials import api_views as commercials
 from apps.tasks import api_views as tasks
@@ -8,7 +9,8 @@ from apps.stock import api_views as stock
 
 router = DefaultRouter()
 
-# global
+# general
+router.register('tvas', general.TvaApiViewSet)
 
 # chats
 router.register('utilisateurs', chats.UtilisateurListApiViewSet)
