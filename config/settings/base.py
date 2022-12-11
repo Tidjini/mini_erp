@@ -1,8 +1,10 @@
 """
 Message Application
 """
-import os
 from pathlib import Path
+from decouple import config
+
+import dj_database_url
 
 # django
 from django.core.exceptions import ImproperlyConfigured
@@ -17,13 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 def get_eviron_var(var_name):
     try:
-        return os.environ[var_name]
+        return config(var_name)
     except:
         message = f"{var_name} not exist in your environment"
         raise ImproperlyConfigured(message)
 
 
-SECRET_KEY = get_eviron_var("DJ_MESSAGE")
+SECRET_KEY = get_eviron_var("SECRET_KEY")
 
 
 INSTALLED_APPS = [
@@ -57,6 +59,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+DATABASES = {
+    "default":dj_database_url.config(default=config('DATABASE_URL'))
+}
+
 
 ROOT_URLCONF = "config.urls"
 
@@ -136,4 +143,5 @@ REST_FRAMEWORK = {
 }
 
 
-ALLOWED_HOSTS = ["*"]
+
+

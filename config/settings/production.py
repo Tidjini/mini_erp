@@ -1,4 +1,5 @@
 from .base import *
 
-# must be added for Debug = False
+DEBUG = False
+
 ALLOWED_HOSTS = ["*"]
