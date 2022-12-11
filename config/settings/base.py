@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
-    "apps.chats",
     "apps.communications",
+    "apps.chats",
+    "apps.stock",
     "apps.commercials",
-    "apps.tasks"
+    "apps.tasks",
 ]
 
 AUTH_USER_MODEL = "chats.Utilisateur"
