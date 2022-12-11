@@ -13,3 +13,13 @@ class Unite(app_models.UtilsMixin):
     # represent unite family, volume, surface, linear, ... Galenic
     # must introduce a list
     category = models.CharField(max_length=50, default='galenic')
+
+
+class Category(app_models.UtilsMixin):
+    name = models.CharField(max_length=50)
+
+
+class SubCategory(app_models.UtilsMixin):
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name='sub_categories')
+    name = models.CharField(max_length=50)
