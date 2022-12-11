@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
+    # applications
+    "apps.global",
     "apps.communications",
     "apps.chats",
     "apps.stock",
