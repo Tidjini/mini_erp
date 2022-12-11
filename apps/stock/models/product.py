@@ -29,8 +29,11 @@ class Product(app_models.UtilsMixin):
     unite = models.ForeignKey(Unite, on_delete=models.SET_NULL, null=True)
 
     stock_qte = app_fields.DecimalField()
+    # to convert between unites
+    unite_coef = app_fields.DecimalField()
+    # todo define process - FIFO - LIFO - CUMP
+    unite_value = app_fields.DecimalField()
     stock_value = app_fields.DecimalField()
-    unite_price = app_fields.DecimalField()
 
     # qté d'approvisionnement to notify
     supply_qte = app_fields.DecimalField()
@@ -39,9 +42,11 @@ class Product(app_models.UtilsMixin):
 
     tva = models.ForeignKey(Tva, on_delete=models.SET_NULL, null=True)
     # fournisseur
-    provider = models.ForeignKey(Tier, on_delete=models.SET_NULL, null=True)
+    provider = models.ForeignKey(
+        Tier, on_delete=models.SET_NULL, null=True, related_name='provides')
     # fabricant
-    maker = models.ForeignKey(Tier, on_delete=models.SET_NULL, null=True)
+    maker = models.ForeignKey(
+        Tier, on_delete=models.SET_NULL, null=True, related_name='products')
     # notification to not purchase within this period (period in days)
     purchase_period = models.IntegerField(default=30)
     # purchase rate, compare to last (Todo or maybe the max) purchase
