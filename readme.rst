@@ -23,14 +23,6 @@ A got notifeyd with B message Content
 A resend Quit message and restart same process
  
 
-// todo
-//- auth functions/ create, and authentication, username/pass
-//- cache token, in key value android
-//- get list of discussions -> from here you can go to list users (contacts)
-//- create a discussion
-//- discussion -> activity
-
-
 TODO
 product filter, voir la fiche de stock de ton logiciel: dans l'application REACT
 	- name, ref,
@@ -39,9 +31,7 @@ product filter, voir la fiche de stock de ton logiciel: dans l'application REACT
 
 fournisseur habituel, unite de mesures .... fiche de produit de tous famille, avec ma propre data base,
 - resturctured the application
-
-
-- stock Article - MP - PF - PSF - ARTICLE (Achat ordinare) / SERVICE, TVA sur article ,, les prix
+- stock Article - MP - PF - PSF - ARTICLE (Achat ordinare) / SERVICE, TVA sur article, les prix
 - Famille et sous Famille
 - unite de mesures
 - tva
@@ -53,3 +43,7 @@ fournisseur habituel, unite de mesures .... fiche de produit de tous famille, av
 database infra/promag
 
 - Facture Instance Image. continue in local
+
+AWS | platform.sh:
+mail: tidjin.messaoudi.infra@mail.com
+pass: nxCgdY3Vn%be)CE@

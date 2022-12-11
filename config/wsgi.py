@@ -1,9 +1,7 @@
 """"""
 import os
 import socketio
-from gevent import pywsgi
-from geventwebsocket import WebSocketServer, Resource
-from geventwebsocket.handler import WSGIHandler
+from geventwebsocket import WebSocketServer
 
 # django
 from django.core.wsgi import get_wsgi_application
