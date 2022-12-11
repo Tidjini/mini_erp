@@ -61,7 +61,7 @@ MIDDLEWARE = [
 ]
 
 DATABASES = {
-    "default":dj_database_url.config(default=config('DATABASE_URL'))
+    "default": dj_database_url.config(default=config('DATABASE_URL'))
 }
 
 
@@ -143,5 +143,4 @@ REST_FRAMEWORK = {
 }
 
 
-
-
+ALLOWED_HOSTS = ["*"]
