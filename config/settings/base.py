@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     # applications
-    "apps.global",
+    "apps.general",
     "apps.communications",
     "apps.chats",
     "apps.stock",

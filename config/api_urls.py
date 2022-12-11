@@ -7,6 +7,9 @@ from apps.tasks import api_views as tasks
 from apps.stock import api_views as stock
 
 router = DefaultRouter()
+
+# global
+
 # chats
 router.register('utilisateurs', chats.UtilisateurListApiViewSet)
 router.register('discussions', chats.DiscussionApiViewSet)
