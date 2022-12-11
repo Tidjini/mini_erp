@@ -4,6 +4,7 @@ from apps.application import models as app_models, fileds as app_fields
 from .base import Unite, Category, SubCategory
 from apps.general.models import Tva
 from apps.commercials.models import Tier
+from apps.stock.managers import ProductQuerySet
 
 
 # TODO review consomable terme, and if we can separete the Services into other Table
@@ -51,3 +52,11 @@ class Product(app_models.UtilsMixin):
     purchase_period = models.IntegerField(default=30)
     # purchase rate, compare to last (Todo or maybe the max) purchase
     purchase_rate = models.FloatField(default=5)
+
+    # custom manager
+    objects = ProductQuerySet.as_manager()
+
+# last purchase informations
+# last buy informations
+# DONE filtering : Products, Services, ....
+# filtering : Category, Sub Category
