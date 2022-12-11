@@ -44,6 +44,3 @@ database infra/promag
 
 - Facture Instance Image. continue in local
 
-AWS | platform.sh:
-mail: tidjin.messaoudi.infra@mail.com
-pass: nxCgdY3Vn%be)CE@
