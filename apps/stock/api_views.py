@@ -32,7 +32,7 @@ class SubCategoryApiViewSet(viewsets.ModelViewSet):
 
 class ProductApiViewSet(viewsets.ModelViewSet):
     queryset = models.Product.objects.all()
-    serializer_class = serializers.SubCategorySerializer
+    serializer_class = serializers.ProductSerializer
     permission_classes = permissions.IsAuthenticated,
     filter_backends = DjangoFilterBackend,
     filterset_fields = 'category', 'sub_category', 'provider', 'maker', 'type'

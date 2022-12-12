@@ -33,7 +33,7 @@ def add_stock(sender, instance, created, **kwargs):
     instance.product.stock_qte += instance.qte * sign
 
     # update value just for receptions
-    instance.product.value += instance.qte * sign * instance.value
+    instance.product.stock_value += instance.qte * sign * instance.value
 
     if instance.product.stock_qte < 0:
         instance.product.stock_qte = 0
