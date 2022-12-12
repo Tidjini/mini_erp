@@ -66,3 +66,13 @@ class Product(app_models.UtilsMixin):
 # last buy informations
 # DONE filtering : Products, Services, ....
 # filtering : Category, Sub Category
+
+
+class Movement(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='sock_movements')
+    qte = app_fields.DecimalField()
+    value = app_fields.DecimalField()
+    out = models.BooleanField(default=False)
+    document = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
