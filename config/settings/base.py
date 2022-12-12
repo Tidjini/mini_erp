@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     # applications
     "apps.general",
     "apps.communications",
-    "apps.chats",
+    "apps.accountings",
     "apps.stock",
     "apps.commercials",
+    "apps.chats",
     "apps.tasks",
 ]
 

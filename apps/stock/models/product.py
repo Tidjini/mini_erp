@@ -3,7 +3,7 @@ from django.db import models
 from apps.application import models as app_models, fileds as app_fields
 from .base import Unite, Category, SubCategory
 from apps.general.models import Tva
-from apps.commercials.models import Tier
+from apps.accountings.models import Third
 from apps.stock.managers import ProductQuerySet
 
 
@@ -44,10 +44,10 @@ class Product(app_models.UtilsMixin):
     tva = models.ForeignKey(Tva, on_delete=models.SET_NULL, null=True)
     # fournisseur
     provider = models.ForeignKey(
-        Tier, on_delete=models.SET_NULL, null=True, related_name='provides')
+        Third, on_delete=models.SET_NULL, null=True, related_name='provides')
     # fabricant
     maker = models.ForeignKey(
-        Tier, on_delete=models.SET_NULL, null=True, related_name='products')
+        Third, on_delete=models.SET_NULL, null=True, related_name='products')
     # notification to not purchase within this period (period in days)
     purchase_period = models.IntegerField(default=30)
     # purchase rate, compare to last (Todo or maybe the max) purchase
@@ -68,7 +68,7 @@ class Product(app_models.UtilsMixin):
 # filtering : Category, Sub Category
 
 
-class Movement(models.Model):
+class StockMovement(models.Model):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name='sock_movements')
     qte = app_fields.DecimalField()

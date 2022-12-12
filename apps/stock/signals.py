@@ -4,13 +4,13 @@ from django.dispatch import receiver
 from . import models
 
 
-@receiver(pre_save, sender=models.Movement)
+@receiver(pre_save, sender=models.StockMovement)
 def remove_stock(sender, instance, **kwargs):
 
     if instance.pk:
         # when updating remove old stock from this one, if out must readd the entity, else remove it
         try:
-            old = models.Movement.objects.get(id=instance.pk)
+            old = models.StockMovement.objects.get(id=instance.pk)
             sign = 1
             if old.out:
                 sign = -1
@@ -24,7 +24,7 @@ def remove_stock(sender, instance, **kwargs):
             pass
 
 
-@receiver(post_save, sender=models.Movement)
+@receiver(post_save, sender=models.StockMovement)
 def add_stock(sender, instance, created, **kwargs):
     # if stock out remove qte, else add this reception
     sign = 1

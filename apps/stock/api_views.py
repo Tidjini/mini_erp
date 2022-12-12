@@ -36,3 +36,9 @@ class ProductApiViewSet(viewsets.ModelViewSet):
     permission_classes = permissions.IsAuthenticated,
     filter_backends = DjangoFilterBackend,
     filterset_fields = 'category', 'sub_category', 'provider', 'maker', 'type'
+
+
+class StockMovementApiViewSet(viewsets.ModelViewSet):
+    queryset = models.StockMovement.objects.order_by('-created_at')
+    serializer_class = serializers.StockMovementSerializer
+    permission_classes = permissions.IsAuthenticated,
