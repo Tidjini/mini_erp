@@ -42,3 +42,10 @@ class StockMovementApiViewSet(viewsets.ModelViewSet):
     queryset = models.StockMovement.objects.order_by('-created_at')
     serializer_class = serializers.StockMovementSerializer
     permission_classes = permissions.IsAuthenticated,
+
+
+class CompositionApiViewSet(viewsets.ModelViewSet):
+    queryset = models.Composition.objects.order_by('-id')
+    serializer_class = serializers.CompositionSerializer
+    permission_classes = permissions.IsAuthenticated,
+    pagination_class = None

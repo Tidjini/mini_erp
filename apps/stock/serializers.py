@@ -48,3 +48,13 @@ class StockMovementSerializer(serializers.ModelSerializer):
         model = models.StockMovement
         fields = '__all__'
         read_only_fields = 'id',
+
+
+class CompositionSerializer(serializers.ModelSerializer):
+
+    item = ProductSerializer(source='product', read_only=True)
+
+    class Meta:
+        model = models.Composition
+        fields = '__all__'
+        read_only_fields = 'id',

@@ -1,2 +1,2 @@
 from .base import Unite, Category, SubCategory
-from .product import Product, StockMovement
+from .product import Product, StockMovement, Composition
