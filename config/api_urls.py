@@ -28,6 +28,7 @@ router.register('categories', stock.CategoryApiViewSet)
 router.register('sub-categories', stock.SubCategoryApiViewSet)
 router.register('products', stock.ProductApiViewSet)
 router.register('stock-movements', stock.StockMovementApiViewSet)
+router.register('compositions', stock.CompositionApiViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
