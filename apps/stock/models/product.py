@@ -62,6 +62,13 @@ class Product(app_models.UtilsMixin):
         ordering = '-updated_at',
 
 
+class Composition(app_models.UtilsMixin):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='compositions')
+
+    qte = app_fields.DecimalField()
+
+
 # last purchase informations
 # last buy informations
 # DONE filtering : Products, Services, ....

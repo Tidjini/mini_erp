@@ -4,6 +4,33 @@ from django.dispatch import receiver
 from . import models
 
 
+def clean_negative_value(product):
+    if product.stock_qte < 0:
+        product.stock_qte = 0
+    if product.stock_value < 0:
+        product.stock_value = 0
+
+
+def update_product(product, qte, value, reverse=1):
+
+    actuel_qte = qte * reverse
+    actuel_value = value * reverse
+
+    product.stock_qte += actuel_qte
+    product.stock_value += actuel_value
+    clean_negative_value(product)
+
+    # update compositions
+    for composition in product.compositions.all():
+        prod = composition.product
+        prod.stock_qte = actuel_qte * composition.qte
+        prod.stock_qte = actuel_value * composition.qte
+        clean_negative_value(prod)
+        prod.save()
+
+    product.save()
+
+
 @receiver(pre_save, sender=models.StockMovement)
 def remove_stock(sender, instance, **kwargs):
 
@@ -15,11 +42,11 @@ def remove_stock(sender, instance, **kwargs):
             if old.out:
                 sign = -1
 
-            instance.product.stock_qte -= old.qte * sign
+            qte = old.qte * sign
             # update value just for receptions
-            instance.product.stock_value -= old.qte * sign * old.value
-
-            instance.product.save()
+            value = old.qte * sign * old.value
+            # -1 to inverse
+            update_product(instance.product, qte, value, reverse=-1)
         except Exception as e:
             pass
 
@@ -30,13 +57,6 @@ def add_stock(sender, instance, created, **kwargs):
     sign = 1
     if instance.out:
         sign = -1
-    instance.product.stock_qte += instance.qte * sign
-
-    # update value just for receptions
-    instance.product.stock_value += instance.qte * sign * instance.value
-
-    if instance.product.stock_qte < 0:
-        instance.product.stock_qte = 0
-    if instance.product.stock_value < 0:
-        instance.product.stock_value = 0
-    instance.product.save()
+    qte = instance.qte * sign
+    value = instance.qte * sign * instance.value
+    update_product(instance.product, qte, value)
