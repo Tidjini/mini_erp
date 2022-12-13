@@ -34,6 +34,9 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 class CompositionSerializer(serializers.ModelSerializer):
 
+    compose_name = serializers.SlugRelatedField(
+        source="composer", slug_field='name', read_only=True)
+
     class Meta:
         model = models.Composition
         fields = '__all__'

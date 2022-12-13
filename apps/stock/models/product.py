@@ -31,15 +31,15 @@ class Product(app_models.UtilsMixin):
 
     stock_qte = app_fields.DecimalField()
     # to convert between unites
-    unite_coef = app_fields.DecimalField()
+    # unite_coef = app_fields.DecimalField()
     # todo define process - FIFO - LIFO - CUMP
-    unite_value = app_fields.DecimalField()
+    # unite_value = app_fields.DecimalField()
     stock_value = app_fields.DecimalField()
 
     # qté d'approvisionnement to notify
-    supply_qte = app_fields.DecimalField()
+    # supply_qte = app_fields.DecimalField()
     # minimum qté
-    min_qte = app_fields.DecimalField()
+    # min_qte = app_fields.DecimalField()
 
     tva = models.ForeignKey(Tva, on_delete=models.SET_NULL, null=True)
     # fournisseur
