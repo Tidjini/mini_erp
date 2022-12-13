@@ -32,7 +32,18 @@ class SubCategorySerializer(serializers.ModelSerializer):
         read_only_fields = 'id',
 
 
+class CompositionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Composition
+        fields = '__all__'
+        read_only_fields = 'id',
+
+
 class ProductSerializer(serializers.ModelSerializer):
+
+    compositions = CompositionSerializer(
+        source='composed_by', read_only=True, many=True)
 
     class Meta:
         model = models.Product
@@ -46,15 +57,5 @@ class StockMovementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.StockMovement
-        fields = '__all__'
-        read_only_fields = 'id',
-
-
-class CompositionSerializer(serializers.ModelSerializer):
-
-    item = ProductSerializer(source='product', read_only=True)
-
-    class Meta:
-        model = models.Composition
         fields = '__all__'
         read_only_fields = 'id',
