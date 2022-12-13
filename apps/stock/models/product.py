@@ -64,9 +64,10 @@ class Product(app_models.UtilsMixin):
 
 class Composition(app_models.UtilsMixin):
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='compositions')
-
+        Product, on_delete=models.CASCADE, related_name='composed_by')
     qte = app_fields.DecimalField()
+    composer = models.ForeignKey(
+        Product, on_delete=models.SET_NULL, null=True, related_name='composed_in')
 
 
 # last purchase informations

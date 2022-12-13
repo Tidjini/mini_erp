@@ -15,13 +15,13 @@ def update_composition(product, qte, value, reverse=1):
     # update this when out
     qte *= reverse
     value *= reverse
-    # update compositions
-    for composition in product.compositions.all():
-        prod = composition.product
-        prod.stock_qte = qte * composition.qte
-        prod.stock_qte = value * composition.qte
-        clean_negative_value(prod)
-        prod.save()
+    # update composers
+    for composition in product.composed_by.all():
+        composer = composition.composer
+        composer.stock_qte = qte * composition.qte
+        composer.stock_qte = value * composition.qte
+        clean_negative_value(composer)
+        composer.save()
 
 
 def update_product(product, qte, value, reverse=1):
