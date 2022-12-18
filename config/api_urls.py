@@ -12,6 +12,7 @@ router = DefaultRouter()
 
 # general
 router.register('tvas', general.TvaApiViewSet)
+router.register('profiles', general.ProfileListApiViewSet)
 
 # chats
 router.register('utilisateurs', chats.UtilisateurListApiViewSet)

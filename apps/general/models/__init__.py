@@ -1,2 +1,2 @@
 from .base import Tva
-from .profile import Profile
+from .profile import Profile, ProfileAPI

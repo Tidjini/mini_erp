@@ -111,7 +111,7 @@ class Profile(AbstractBaseUser, UtilsMixin):
         return "username:{}, nom:{}".format(self.username, self.nom)
 
 
-class UtilisateurAPI:
+class ProfileAPI:
 
     @staticmethod
     def username_auth(username, password, *args, **kwargs):

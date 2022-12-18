@@ -1,5 +1,6 @@
 from rest_framework import viewsets, permissions, filters, status
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
 
 
 from apps.application.response import auth_response
@@ -32,3 +33,30 @@ class ProfileListApiViewSet(viewsets.ModelViewSet):
         response = auth_response(instance, serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(response, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class AuthenticationAPI:
+
+    @staticmethod
+    def response(user, *args, **kwargs):
+        serializer = serializers.ProfileSerializer(user)
+        response = auth_response(user, serializer)
+        return Response(response, status=status.HTTP_200_OK)
+
+    @api_view(('GET',))
+    @permission_classes((permissions.IsAuthenticated,))
+    @staticmethod
+    def token(request, *args, **kwargs):
+        # set request header with Authorisation: token xxxxxxxxxxxxxx
+        user = request.user
+        return AuthenticationAPI.response(user)
+
+    @api_view(('POST', ))
+    @staticmethod
+    def username(request, *args, **kwargs):
+        uname = request.data.get('username')
+        pwd = request.data.get('password')
+        user = models.ProfileAPI.username_auth(uname, pwd)
+        if user:
+            return AuthenticationAPI.response(user)
+        return Response('User not exist', status=status.HTTP_404_NOT_FOUND)
