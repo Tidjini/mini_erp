@@ -12,13 +12,3 @@ class EmployeSerializer(serializers.ModelSerializer):
         model = models.Employe
         fields = '__all__'
         read_only_fields = 'id',
-
-
-class LocalisationSerializer(serializers.ModelSerializer):
-
-    user = ProfileSerializer(source='profile', read_only=True)
-
-    class Meta:
-        model = models.Localisation
-        fields = '__all__'
-        read_only_fields = 'id',

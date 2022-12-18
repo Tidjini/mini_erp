@@ -117,7 +117,7 @@ class Localisation(UtilsMixin):
     # lat, lng for localisation
     # todo later add more infromation, region, zone ...
     user = models.OneToOneField(
-        Profile, primary_key=True, on_delete=models.CASCADE)
+        Profile, primary_key=True, on_delete=models.CASCADE, related_name='localisation')
     longitude = models.DecimalField(
         max_digits=50, decimal_places=20, default=0)
     latitude = models.DecimalField(max_digits=50, decimal_places=20, default=0)

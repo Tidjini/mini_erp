@@ -14,8 +14,19 @@ class TvaSerializer(serializers.ModelSerializer):
         read_only_fields = 'id',
 
 
+class LocalisationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Localisation
+        fields = '__all__'
+        read_only_fields = 'id',
+
+
 class ProfileSerializer(ModelSerializerMixin):
     name = serializers.ReadOnlyField()
+    localisation = LocalisationSerializer(
+        source='localisation', read_only=True)
+
     password_one = serializers.CharField(
         style={"input_type": "password"}, write_only=True
     )
