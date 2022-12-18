@@ -77,7 +77,7 @@ class Task(models.Model):
 
 class TaskLocation(models.Model):
     task = models.OneToOneField(
-        Task, primary_key=True, on_delete=models.CASCADE, related_name='parcours')
+        Task, primary_key=True, on_delete=models.CASCADE, related_name='path')
     start_lat = models.DecimalField(
         max_digits=50, decimal_places=20, null=True)
     start_lng = models.DecimalField(
