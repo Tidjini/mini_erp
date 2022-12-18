@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.query import Q
 
 from .mixins import TimeStampedModel, ModelUtilsMixin
-from .utilisateur import Utilisateur
+from apps.general.models import Profile
 
 
 # create discussion if not exist between atomic entities
@@ -29,7 +29,7 @@ class Discussion(TimeStampedModel, ModelUtilsMixin):
 
 class Participant(models.Model):
     user = models.ForeignKey(
-        Utilisateur,
+        Profile,
         on_delete=models.SET_NULL,
         null=True,
         related_name="participations",
@@ -52,7 +52,7 @@ class Message(TimeStampedModel, ModelUtilsMixin):
         Discussion, on_delete=models.CASCADE, related_name="messages"
     )
     sender = models.ForeignKey(
-        Utilisateur,
+        Profile,
         on_delete=models.CASCADE,
         related_name="my_messages",
     )
@@ -75,5 +75,5 @@ class MessageVue(models.Model):
     message = models.ForeignKey(
         Message, on_delete=models.CASCADE, related_name="vues")
     user = models.ForeignKey(
-        Utilisateur, on_delete=models.CASCADE, related_name="mes_vues"
+        Profile, on_delete=models.CASCADE, related_name="mes_vues"
     )
