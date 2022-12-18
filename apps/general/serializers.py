@@ -24,8 +24,7 @@ class LocalisationSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(ModelSerializerMixin):
     name = serializers.ReadOnlyField()
-    localisation = LocalisationSerializer(
-        source='localisation', read_only=True)
+    localisation = LocalisationSerializer(read_only=True)
 
     password_one = serializers.CharField(
         style={"input_type": "password"}, write_only=True

@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions, filters, status
+from rest_framework import viewsets, permissions, filters, status, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 
@@ -13,6 +13,21 @@ class TvaApiViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TvaSerializer
     permission_classes = permissions.IsAuthenticated,
     pagination_class = None
+
+
+class LocalisationApi(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    queryset = models.Localisation.objects.all()
+    serializer_class = serializers.LocalisationSerializer
+    permission_classes = permissions.IsAuthenticated,
+    pagination_class = None
+
+    def create(self, request, *args, **kwargs):
+        request.data['user'] = request.user.id
+        return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        self.user = request.user
+        return super(LocalisationApi, self).update(request, *args, **kwargs)
 
 
 class ProfileListApiViewSet(viewsets.ModelViewSet):

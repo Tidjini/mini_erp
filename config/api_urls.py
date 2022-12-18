@@ -13,6 +13,7 @@ router = DefaultRouter()
 # general
 router.register('tvas', general.TvaApiViewSet)
 router.register('profiles', general.ProfileListApiViewSet)
+router.register('localisations', general.LocalisationApi)
 
 # chats
 router.register('discussions', chats.DiscussionApiViewSet)
