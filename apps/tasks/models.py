@@ -76,8 +76,9 @@ class Task(models.Model):
 
 
 class TaskLocation(models.Model):
-    task = models.OneToOneField(
-        Task, primary_key=True, on_delete=models.CASCADE, related_name='path')
+    # task can have multiple paths, and locations
+    task = models.ForeignKey(
+        Task, on_delete=models.CASCADE, related_name='paths')
     start_lat = models.DecimalField(
         max_digits=50, decimal_places=20, null=True)
     start_lng = models.DecimalField(
@@ -87,3 +88,10 @@ class TaskLocation(models.Model):
 
     start_address = models.TextField()
     end_address = models.TextField()
+
+
+class TaskAttachement(models.Model):
+    # task can have multiple attachements
+    task = models.ForeignKey(
+        Task, on_delete=models.CASCADE, related_name='task_docs')
+    file = models.FileField(null=True)
