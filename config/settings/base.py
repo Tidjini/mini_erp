@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     "apps.tasks",
 ]
 
-AUTH_USER_MODEL = "chats.Utilisateur"
+AUTH_USER_MODEL = "general.Profile"
 
 
 MIDDLEWARE = [

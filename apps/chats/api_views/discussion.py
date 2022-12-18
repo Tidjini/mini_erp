@@ -1,9 +1,8 @@
-from rest_framework import viewsets, mixins, permissions, status
-from rest_framework import serializers
+from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
 
-from ..models import Utilisateur, Discussion, Participant, Message
+from apps.general.models import Profile
+from ..models import Discussion, Participant, Message
 from ..serializers import DiscussionSerializer, MessageSerializer
 
 
@@ -25,10 +24,10 @@ class DiscussionApiViewSet(viewsets.ModelViewSet):
     @staticmethod
     def get_user(id, *args, **kwargs):
         try:
-            return Utilisateur.objects.get(id=id)
-        except Utilisateur.DoesNotExist:
+            return Profile.objects.get(id=id)
+        except Profile.DoesNotExist:
             return None
-        except Utilisateur.MultipleObjectsReturned:
+        except Profile.MultipleObjectsReturned:
             # more specifications
             return None
 
@@ -52,7 +51,7 @@ class DiscussionApiViewSet(viewsets.ModelViewSet):
 
     def create_discussion(self, request, *args, **kwargs):
 
-        creator: Utilisateur = request.user
+        creator: Profile = request.user
         # get user by id
         user_id = request.data.get("user", None)
         if not user_id:
