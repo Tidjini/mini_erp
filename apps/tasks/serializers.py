@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
 from . import models
-from apps.chats.serializers import UtilisateurSerializer
+from apps.general.serializers import ProfileSerializer
 
 
 class TaskSerialzer(serializers.ModelSerializer):
 
-    receiver_item = UtilisateurSerializer(source='receiver', read_only=True)
+    receiver_item = ProfileSerializer(source='receiver', read_only=True)
 
     class Meta:
         model = models.Task

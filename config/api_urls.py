@@ -15,7 +15,6 @@ router.register('tvas', general.TvaApiViewSet)
 router.register('profiles', general.ProfileListApiViewSet)
 
 # chats
-router.register('utilisateurs', chats.UtilisateurListApiViewSet)
 router.register('discussions', chats.DiscussionApiViewSet)
 router.register('messages', chats.MessageApiViewSet)
 # commecrials
@@ -36,12 +35,6 @@ urlpatterns = [
     path('api/auth/token/', general.AuthenticationAPI.token,
          name='Token Authentication'),
     path('api/auth/username/', general.AuthenticationAPI.username,
-         name='Username Authentication'),
-
-    # replace this with this
-    path('api/auth/token/', chats.AuthenticationAPI.token,
-         name='Token Authentication'),
-    path('api/auth/username/', chats.AuthenticationAPI.username,
          name='Username Authentication')
 
 
