@@ -33,8 +33,16 @@ router.register('compositions', stock.CompositionApiViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/auth/token/', general.AuthenticationAPI.token,
+         name='Token Authentication'),
+    path('api/auth/username/', general.AuthenticationAPI.username,
+         name='Username Authentication'),
+
+    # replace this with this
     path('api/auth/token/', chats.AuthenticationAPI.token,
          name='Token Authentication'),
     path('api/auth/username/', chats.AuthenticationAPI.username,
          name='Username Authentication')
+
+
 ]
