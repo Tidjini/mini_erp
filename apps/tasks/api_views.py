@@ -6,6 +6,7 @@ from . import models, serializers
 
 # done for list, get created tasks for creator
 # done for list, get tasks for receiver
+# todo set finish request in separete view set with function based
 class TaskApiViewSet(viewsets.ModelViewSet):
 
     queryset = models.Task.objects.order_by('-created_at')

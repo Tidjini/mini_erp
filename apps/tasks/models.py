@@ -49,7 +49,7 @@ class Task(models.Model):
 
     @property
     def statue_label(self):
-        state = filter(lambda s: s[0] == self.statue, self.STATUES)[0]
+        state = list(filter(lambda s: s[0] == self.statue, self.STATUES))[0]
         return state[1].title()
 
     def save(self, *args, **kwargs):
