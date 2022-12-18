@@ -4,9 +4,10 @@ from apps.general.models import Profile
 
 
 class Employe(UtilsMixin):
-
+    # simple Employe Table, with fixed Employe Types
+    # linked to user table, wich can be null for none users
     TYPES = (
-        ('C', 'CHAUFFEUR'),
+        ('D', 'DRIVER'),
         ('A', 'ADMINISTRATION'),
         ('O', 'OTHER'),
     )
@@ -17,6 +18,9 @@ class Employe(UtilsMixin):
 
 class Localisation(UtilsMixin):
 
+    # track users by GPS provider (Android Service or other)
+    # lat, lng for localisation
+    # todo later add more infromation, region, zone ...
     user = models.OneToOneField(
         Profile, primary_key=True, on_delete=models.CASCADE)
     longitude = models.DecimalField(
