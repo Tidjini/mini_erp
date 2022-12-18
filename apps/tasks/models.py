@@ -22,10 +22,3 @@ class Task(models.Model):
     label = models.CharField(max_length=255)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-class Localisation(UtilsMixin):
-    user = models.OneToOneField(Utilisateur, primary_key=True)
-    latitude = models.DecimalField(max_digits=50, decimal_places=20, default=0)
-    longitude = models.DecimalField(
-        max_digits=50, decimal_places=20, default=0)

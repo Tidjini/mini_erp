@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from rest_framework.authtoken.models import Token
 
-from apps.application.models import TimeStampedModel, UtilsMixin
+from apps.application.models import UtilsMixin
 
 
 # Todo Vercel problem with staticmethods
 # TODO set Tasks , Created Tasks in Managers
-class Utilisateur(AbstractBaseUser, UtilsMixin):
+class Profile(AbstractBaseUser, UtilsMixin):
 
     # override primary key with char key, review for UUID
     # id = models.IntegerField(primary_key=True, auto_created=True
@@ -49,7 +48,7 @@ class Utilisateur(AbstractBaseUser, UtilsMixin):
         self.is_staff = True
         self.is_active = True
         self.__dict__.update(data)
-        super(Utilisateur, self).save(*args, **kwargs)
+        super(Profile, self).save(*args, **kwargs)
 
     def exist_with_password(self, *args):
         existed_user = self.exist(*args)
@@ -65,7 +64,7 @@ class Utilisateur(AbstractBaseUser, UtilsMixin):
             # set hashed password for old entity
             self.set_password(self.password)
             try:
-                return super(Utilisateur, self).save(*args, **kwargs)
+                return super(Profile, self).save(*args, **kwargs)
             except Exception as e:
                 raise ValueError(f"Exception due to : {e}")
 
@@ -116,7 +115,7 @@ class UtilisateurAPI:
 
     @staticmethod
     def username_auth(username, password, *args, **kwargs):
-        user = Utilisateur(username=username.lower(), password=password)
+        user = Profile(username=username.lower(), password=password)
         user = user.exist_with_password("username")
         # make sure is active
         if user and user.is_active:
