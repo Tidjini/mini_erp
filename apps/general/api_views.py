@@ -23,10 +23,12 @@ class LocalisationApi(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets
 
     def create(self, request, *args, **kwargs):
         request.data['user'] = request.user.id
+
         return super().create(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
-        self.user = request.user
+        self.user = request.user.id
+        request.data['user'] = request.user.id
         return super(LocalisationApi, self).update(request, *args, **kwargs)
 
 

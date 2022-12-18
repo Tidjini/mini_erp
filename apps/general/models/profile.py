@@ -119,8 +119,8 @@ class Localisation(UtilsMixin):
     user = models.OneToOneField(
         Profile, primary_key=True, on_delete=models.CASCADE, related_name='localisation')
     longitude = models.DecimalField(
-        max_digits=50, decimal_places=20, default=0)
-    latitude = models.DecimalField(max_digits=50, decimal_places=20, default=0)
+        max_digits=50, decimal_places=20, null=True)
+    latitude = models.DecimalField(max_digits=50, decimal_places=20, null=True)
 
 
 class ProfileAPI:
