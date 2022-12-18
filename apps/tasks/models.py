@@ -1,5 +1,17 @@
+from random import randint
 from django.db import models
+
+from apps.application import colors
 from apps.general.models import Profile
+from django.utils import timezone
+
+
+def generate_colors():
+    fore = randint(0, 5)
+    back = randint(0, 5)
+    if fore < back:
+        return colors.lights[fore], colors.darks[back]
+    return colors.darks[fore], colors.lights[back]
 
 
 class Task(models.Model):
@@ -7,6 +19,8 @@ class Task(models.Model):
     STATUES = (
         ('i', 'instance'),
         ('a', 'accepted'),
+        ('p', 'in progress'),
+        # the finished status
         ('t', 'terminated'),
         ('c', 'canceled')
     )
@@ -19,5 +33,43 @@ class Task(models.Model):
     statue = models.CharField(max_length=1, choices=STATUES, default='i')
 
     label = models.CharField(max_length=255)
+
+    # set color generator return a Tuple (fore, back) for Caption of task
+    forecolor = models.CharField(max_length=10, null=True)
+    backcolor = models.CharField(max_length=10, null=True)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    finished_at = models.DateTimeField(null=True)
+
+    @property
+    def caption(self):
+        cap = self.label[:2]
+        return cap.upper() if cap else 'ND'
+
+    @property
+    def statue_label(self):
+        state = filter(lambda s: s[0] == self.statue, self.STATUES)[0]
+        return state[1].title()
+
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            f, b = generate_colors()
+            self.forecolor = f
+            self.backcolor = b
+
+        if self.statue in ('t', 'c'):
+            self.finished_at = timezone.now()
+
+        return super(Task, self).save(*args, **kwargs)
+
+    def finish(self):
+        if self.statue in ('t', 'c'):
+            self.finished_at = timezone.now()
+            # todo notify the user - creator
+            # todo later notify the specific user
+        return self.save()
+
+    def finish_with_statue(self, statue):
+        self.statue = statue
+        return self.finish()

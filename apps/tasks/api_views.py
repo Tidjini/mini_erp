@@ -17,7 +17,7 @@ class TaskApiViewSet(viewsets.ModelViewSet):
         user = request.user
         if not user:
             return Response({'detail': 'you must specify the task user (creator or receiver), put token in the header'}, status=status.HTTP_401_UNAUTHORIZED)
-
+        # type get params: to specify the request user, is he wants get created ones or received ones
         type = request.query_params.get('type', None)
         if type is None:
             return Response({'detail': 'you must specify the user type (creator or receiver), in request get params'}, status=status.HTTP_401_UNAUTHORIZED)
