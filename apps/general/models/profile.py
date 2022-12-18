@@ -111,6 +111,18 @@ class Profile(AbstractBaseUser, UtilsMixin):
         return "username:{}, nom:{}".format(self.username, self.nom)
 
 
+class Localisation(UtilsMixin):
+
+    # track users by GPS provider (Android Service or other)
+    # lat, lng for localisation
+    # todo later add more infromation, region, zone ...
+    user = models.OneToOneField(
+        Profile, primary_key=True, on_delete=models.CASCADE)
+    longitude = models.DecimalField(
+        max_digits=50, decimal_places=20, default=0)
+    latitude = models.DecimalField(max_digits=50, decimal_places=20, default=0)
+
+
 class ProfileAPI:
 
     @staticmethod
