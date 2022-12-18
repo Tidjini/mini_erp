@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     # applications
     "apps.general",
+    "apps.hr_managments",
     "apps.communications",
     "apps.accountings",
     "apps.stock",
