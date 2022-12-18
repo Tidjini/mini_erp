@@ -1,7 +1,7 @@
 from random import randint
 from django.db import models
 
-from apps.application import colors
+from apps.application import colors, fileds
 from apps.general.models import Profile
 from django.utils import timezone
 
@@ -73,3 +73,17 @@ class Task(models.Model):
     def finish_with_statue(self, statue):
         self.statue = statue
         return self.finish()
+
+
+class TaskLocation(models.Model):
+    task = models.OneToOneField(
+        Task, primary_key=True, on_delete=models.CASCADE, related_name='parcours')
+    start_lat = models.DecimalField(
+        max_digits=50, decimal_places=20, null=True)
+    start_lng = models.DecimalField(
+        max_digits=50, decimal_places=20, null=True)
+    end_lat = models.DecimalField(max_digits=50, decimal_places=20, null=True)
+    end_lng = models.DecimalField(max_digits=50, decimal_places=20, null=True)
+
+    start_address = models.TextField()
+    end_address = models.TextField()
