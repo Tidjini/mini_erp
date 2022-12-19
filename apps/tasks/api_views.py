@@ -28,13 +28,8 @@ class TaskApiViewSet(viewsets.ModelViewSet):
         if type is None:
             return Response({'detail': 'you must specify the user type (creator or receiver), in request get params'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        if type == "0":
-            self.queryset = models.Task.objects.filter(
-                creator=user.id)
-        else:
-            self.queryset = models.Task.objects.filter(receiver=user.id)
-
-        self.queryset = self.queryset.order_by('-created_at')
+        self.queryset = self.queryset.user_tasks(user, type).state(
+            closed).order_by('-created_at')
 
         return super().list(request, *args, **kwargs)
 
