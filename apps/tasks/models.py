@@ -1,9 +1,11 @@
 from random import randint
-from django.db import models
 
-from apps.application import colors, fileds
-from apps.general.models import Profile
+from django.db import models
 from django.utils import timezone
+
+from apps.application import colors
+from apps.general.models import Profile
+from . import managers
 
 
 def generate_colors():
@@ -41,6 +43,8 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     finished_at = models.DateTimeField(null=True)
+
+    objects = managers.TaskQuerySet.as_manager()
 
     @property
     def caption(self):

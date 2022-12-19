@@ -1,5 +1,6 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 from . import models, serializers
 
@@ -12,6 +13,8 @@ class TaskApiViewSet(viewsets.ModelViewSet):
     queryset = models.Task.objects.order_by('-created_at')
     serializer_class = serializers.TaskSerialzer
     permission_classes = permissions.IsAuthenticated,
+    filter_backends = DjangoFilterBackend,
+    filterset_fields = 'created_at__date', 'statue',
 
     def list(self, request, *args, **kwargs):
 
@@ -20,6 +23,8 @@ class TaskApiViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'you must specify the task user (creator or receiver), put token in the header'}, status=status.HTTP_401_UNAUTHORIZED)
         # type get params: to specify the request user, is he wants get created ones or received ones
         type = request.query_params.get('type', None)
+        closed = request.query_params.get('closed', None)
+
         if type is None:
             return Response({'detail': 'you must specify the user type (creator or receiver), in request get params'}, status=status.HTTP_401_UNAUTHORIZED)
 
