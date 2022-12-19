@@ -52,6 +52,10 @@ class Task(models.Model):
         state = list(filter(lambda s: s[0] == self.statue, self.STATUES))[0]
         return state[1].title()
 
+    @property
+    def closed(self):
+        return self.statue in ('t', 'c')
+
     def save(self, *args, **kwargs):
         if self.id is None:
             f, b = generate_colors()
