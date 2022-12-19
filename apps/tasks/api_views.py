@@ -14,7 +14,11 @@ class TaskApiViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TaskSerialzer
     permission_classes = permissions.IsAuthenticated,
     filter_backends = DjangoFilterBackend,
-    filterset_fields = 'created_at__date', 'statue',
+
+    filterset_fields = {
+        "created_at": ('date',),
+        "statue": ('exact',)
+    }
 
     def list(self, request, *args, **kwargs):
 

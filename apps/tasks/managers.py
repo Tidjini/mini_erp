@@ -29,6 +29,6 @@ class TaskQuerySet(QuerySet):
         if closed is None:
             return self
 
-        if closed:
+        if closed == '1':
             return self.closed()
         return self.opened()
