@@ -30,6 +30,7 @@ class TaskSerialzer(serializers.ModelSerializer):
 
     caption = serializers.ReadOnlyField()
     statue_label = serializers.ReadOnlyField()
+    closed = serializers.ReadOnlyField()
 
     class Meta:
         model = models.Task
