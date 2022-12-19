@@ -93,6 +93,8 @@ class TaskLocation(models.Model):
     start_address = models.TextField()
     end_address = models.TextField()
 
+    # todo later dynamiclay by google, time and distance (short)
+
 
 class TaskAttachement(models.Model):
     # task can have multiple attachements
