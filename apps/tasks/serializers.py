@@ -30,7 +30,8 @@ class TaskSerialzer(serializers.ModelSerializer):
     caption = serializers.ReadOnlyField()
     statue_label = serializers.ReadOnlyField()
     closed = serializers.ReadOnlyField()
-    created = serializers.ReadOnlyField()
+    created_date = serializers.ReadOnlyField()
+    created_time = serializers.ReadOnlyField()
     receiver_name = serializers.ReadOnlyField()
     creator_name = serializers.ReadOnlyField()
 

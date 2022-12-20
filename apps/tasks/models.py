@@ -69,8 +69,12 @@ class Task(models.Model):
         return self.creator.name
 
     @property
-    def created(self):
-        return self.created_at.strftime('%d/%m/%Y (%H:%M)')
+    def created_date(self):
+        return self.created_at.strftime('%d/%m/%Y')
+
+    @property
+    def created_time(self):
+        return self.created_at.strftime('%H:%M')
 
     def save(self, *args, **kwargs):
         if self.id is None:
