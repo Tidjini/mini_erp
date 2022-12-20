@@ -60,6 +60,18 @@ class Task(models.Model):
     def closed(self):
         return self.statue in ('t', 'c')
 
+    @property
+    def receiver_name(self):
+        return self.receiver.name if self.receiver else None
+
+    @property
+    def creator_name(self):
+        return self.creator.name
+
+    @property
+    def created(self):
+        return self.created_at.strftime('%d/%m/%Y (%H:%M)')
+
     def save(self, *args, **kwargs):
         if self.id is None:
             f, b = generate_colors()

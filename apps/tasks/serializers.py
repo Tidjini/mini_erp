@@ -22,7 +22,6 @@ class TaskAttachementSerializer(serializers.ModelSerializer):
 
 class TaskSerialzer(serializers.ModelSerializer):
 
-    receiver_item = ProfileSerializer(source='receiver', read_only=True)
     locations = TaskLocationSerializer(
         source='path', read_only=True, many=True)
     documents = TaskAttachementSerializer(
@@ -31,6 +30,9 @@ class TaskSerialzer(serializers.ModelSerializer):
     caption = serializers.ReadOnlyField()
     statue_label = serializers.ReadOnlyField()
     closed = serializers.ReadOnlyField()
+    created = serializers.ReadOnlyField()
+    receiver_name = serializers.ReadOnlyField()
+    creator_name = serializers.ReadOnlyField()
 
     class Meta:
         model = models.Task
