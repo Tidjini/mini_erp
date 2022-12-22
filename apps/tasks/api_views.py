@@ -30,8 +30,8 @@ class TaskApiViewSet(viewsets.ModelViewSet):
         type = request.query_params.get('type', None)
         closed = request.query_params.get('closed', None)
 
-        if type is None:
-            return Response({'detail': 'you must specify the user type (creator or receiver), in request get params'}, status=status.HTTP_404_NOT_FOUND)
+        # if type is None:
+        #     return Response({'detail': 'you must specify the user type (creator or receiver), in request get params'}, status=status.HTTP_404_NOT_FOUND)
 
         self.queryset = self.queryset.user_tasks(user, type).state(
             closed).order_by('-created_at')

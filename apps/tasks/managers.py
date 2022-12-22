@@ -13,7 +13,7 @@ class TaskQuerySet(QuerySet):
 
     def user_tasks(self, user, type=None):
         if type is None:
-            return None
+            return self.created(user) | self.affected(user)
         if type == "0":
             return self.created(user)
         return self.affected(user)
