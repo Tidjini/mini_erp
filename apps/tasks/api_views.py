@@ -18,7 +18,9 @@ class TaskApiViewSet(viewsets.ModelViewSet):
 
     filterset_fields = {
         "created_at": ('date',),
-        "statue": ('exact',)
+        "statue": ('exact',),
+        "creator": ('exact',),
+        "receiver": ('exact',)
     }
 
     def list(self, request, *args, **kwargs):
