@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions, status, filters
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -14,7 +14,8 @@ class TaskApiViewSet(viewsets.ModelViewSet):
     queryset = models.Task.objects.order_by('-created_at')
     serializer_class = serializers.TaskSerialzer
     permission_classes = permissions.IsAuthenticated,
-    filter_backends = DjangoFilterBackend,
+    filter_backends = DjangoFilterBackend, filters.SearchFilter
+    search_fields = 'label', 'description'
 
     filterset_fields = {
         "created_at": ('date',),
