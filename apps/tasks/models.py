@@ -107,15 +107,17 @@ class TaskLocation(models.Model):
     # task can have multiple paths, and locations
     task = models.ForeignKey(
         Task, on_delete=models.CASCADE, related_name='paths')
-    start_lat = models.DecimalField(
+    origin_lat = models.DecimalField(
         max_digits=50, decimal_places=20, null=True)
-    start_lng = models.DecimalField(
+    origin_lng = models.DecimalField(
         max_digits=50, decimal_places=20, null=True)
-    end_lat = models.DecimalField(max_digits=50, decimal_places=20, null=True)
-    end_lng = models.DecimalField(max_digits=50, decimal_places=20, null=True)
+    destination_lat = models.DecimalField(
+        max_digits=50, decimal_places=20, null=True)
+    destination_lng = models.DecimalField(
+        max_digits=50, decimal_places=20, null=True)
 
-    start_address = models.TextField()
-    end_address = models.TextField()
+    origin_address = models.TextField()
+    destination_address = models.TextField()
 
     # todo later dynamiclay by google, time and distance (short)
 
