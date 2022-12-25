@@ -46,5 +46,5 @@ class TaskLocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.TaskLocation
-        fields = '__all__',
+        fields = '__all__'
         read_only_fields = 'id',
