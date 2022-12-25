@@ -34,6 +34,7 @@ class TaskSerialzer(serializers.ModelSerializer):
     created_time = serializers.ReadOnlyField()
     receiver_name = serializers.ReadOnlyField()
     creator_name = serializers.ReadOnlyField()
+    has_location = serializers.ReadOnlyField()
 
     class Meta:
         model = models.Task
