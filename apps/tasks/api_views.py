@@ -49,3 +49,21 @@ class TaskApiViewSet(viewsets.ModelViewSet):
         request.data.update({'creator': request.user.id})
 
         return super().create(request, *args, **kwargs)
+
+
+class TaskLocationApiView(viewsets.ModelViewSet):
+    queryset = models.TaskLocation.objects
+    serializer_class = serializers.TaskLocationSerializer
+    permission_classes = permissions.IsAuthenticated,
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+
+        task = request.query_params.get('task', None)
+
+        if task is None:
+            return Response({'detail': 'you must specify the task, {params: task<id:int>}'}, status=status.HTTP_404_NOT_FOUND)
+
+        self.queryset = self.queryset.location_task(task)
+
+        return super().list(request, *args, **kwargs)

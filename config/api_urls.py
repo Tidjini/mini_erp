@@ -23,6 +23,7 @@ router.register('thirds', accounts.ThirdApiViewSet)
 router.register('payments', accounts.PaymentApiViewSet)
 # tasks
 router.register('tasks', tasks.TaskApiViewSet)
+router.register('task-localisations', tasks.TaskLocationApiView)
 # stocks
 router.register('unites', stock.UniteApiViewSet)
 router.register('categories', stock.CategoryApiViewSet)

@@ -119,6 +119,8 @@ class TaskLocation(models.Model):
     origin_address = models.TextField()
     destination_address = models.TextField()
 
+    objects = managers.TaskLocationQuerySet.as_manager()
+
     # todo later dynamiclay by google, time and distance (short)
 
 

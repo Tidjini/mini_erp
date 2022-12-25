@@ -32,3 +32,10 @@ class TaskQuerySet(QuerySet):
         if closed == '1':
             return self.closed()
         return self.opened()
+
+
+class TaskLocationQuerySet(QuerySet):
+
+    def location_task(self, task_id):
+        # get list for user as creator
+        return self.filter(task=task_id)
