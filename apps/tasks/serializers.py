@@ -40,3 +40,11 @@ class TaskSerialzer(serializers.ModelSerializer):
         model = models.Task
         fields = '__all__'
         read_only_fields = 'id',
+
+
+class TaskLocationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.TaskLocation
+        fields = '__all__',
+        read_only_fields = 'id',
