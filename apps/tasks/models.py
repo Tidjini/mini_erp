@@ -78,7 +78,7 @@ class Task(models.Model):
 
     @property
     def has_location(self):
-        return self.paths and len(self.paths) > 0
+        return self.paths and len(self.paths.all()) > 0
 
     def save(self, *args, **kwargs):
         if self.id is None:
