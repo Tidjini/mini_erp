@@ -76,6 +76,10 @@ class Task(models.Model):
     def created_time(self):
         return self.created_at.strftime('%H:%M')
 
+    @property
+    def has_location(self):
+        return self.paths and len(self.paths) > 0
+
     def save(self, *args, **kwargs):
         if self.id is None:
             f, b = generate_colors()
