@@ -52,7 +52,7 @@ class TaskApiViewSet(viewsets.ModelViewSet):
 
 
 class TaskLocationApiView(viewsets.ModelViewSet):
-    queryset = models.TaskLocation.objects
+    queryset = models.TaskLocation.objects.order_by('id')
     serializer_class = serializers.TaskLocationSerializer
     permission_classes = permissions.IsAuthenticated,
     pagination_class = None
