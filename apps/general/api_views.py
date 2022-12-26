@@ -23,13 +23,18 @@ class LocalisationApi(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets
 
     def create(self, request, *args, **kwargs):
         request.data['user'] = request.user.id
+        print('in create')
 
         return super().create(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
         self.user = request.user.id
         request.data['user'] = request.user.id
-        return super(LocalisationApi, self).update(request, *args, **kwargs)
+        print('in update')
+        try:
+            return super(LocalisationApi, self).update(request, *args, **kwargs)
+        except:
+            return super().create(request, *args, **kwargs)
 
 
 class ProfileListApiViewSet(viewsets.ModelViewSet):
