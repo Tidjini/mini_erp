@@ -61,9 +61,10 @@ class TaskLocationApiView(viewsets.ModelViewSet):
 
         task = request.query_params.get('task', None)
 
-        if task is None:
+        if task is None and not task.isdigit():
             return Response({'detail': 'you must specify the task, {params: task<id:int>}'}, status=status.HTTP_404_NOT_FOUND)
 
+        task = int(task)
         self.queryset = self.queryset.location_task(task)
 
         return super().list(request, *args, **kwargs)
