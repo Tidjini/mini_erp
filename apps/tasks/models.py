@@ -118,6 +118,7 @@ class TaskLocation(models.Model):
 
     origin_address = models.TextField()
     destination_address = models.TextField()
+    distance = models.DecimalField(max_digits=50, decimal_places=20, null=True)
 
     objects = managers.TaskLocationQuerySet.as_manager()
 
