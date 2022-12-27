@@ -23,14 +23,14 @@ class LocalisationApi(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets
 
     def create(self, request, *args, **kwargs):
         request.data['user'] = request.user.id
-        print('in create')
+        print('in create', request.user.name)
 
         return super().create(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
         self.user = request.user.id
         request.data['user'] = request.user.id
-        print('in update')
+        print('in update', request.user.name)
         try:
             return super(LocalisationApi, self).update(request, *args, **kwargs)
         except:
