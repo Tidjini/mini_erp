@@ -121,6 +121,26 @@ class TaskLocation(models.Model):
     distance = models.DecimalField(max_digits=50, decimal_places=20, null=True)
     duration = models.DecimalField(max_digits=50, decimal_places=20, null=True)
 
+    @property
+    def humain_distance(self):
+        km = self.distance // 1000
+        return f'{km} KM'
+
+    @property
+    def humain_duration(self):
+
+        minutes = self.duration // 60
+        hours = minutes // 60
+        minutes = minutes % 60
+        days = hours // 24
+        hours = hours % 24
+
+        result = f'{days} jour(s) ' if days else ''
+        result += f'{hours} heure(s) ' if hours else ''
+        result += f'{minutes} min(s) ' if minutes else ''
+
+        return result
+
     objects = managers.TaskLocationQuerySet.as_manager()
 
     # todo later dynamiclay by google, time and distance (short)

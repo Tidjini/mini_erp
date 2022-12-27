@@ -44,6 +44,9 @@ class TaskSerialzer(serializers.ModelSerializer):
 
 class TaskLocationSerializer(serializers.ModelSerializer):
 
+    humain_duration = serializers.ReadOnlyField()
+    humain_distance = serializers.ReadOnlyField()
+
     class Meta:
         model = models.TaskLocation
         fields = '__all__'
