@@ -6,10 +6,18 @@ from geventwebsocket import WebSocketServer
 # django
 from django.core.wsgi import get_wsgi_application
 from apps.communications.views import sio
+from decouple import config
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-application = get_wsgi_application()
+
+
+env = config('ENV')
+
+if env.lower() == 'development':
+    application = get_wsgi_application()
+else:
+    app = get_wsgi_application()
 # django_app = get_wsgi_application()
 # application = socketio.WSGIApp(sio, django_app)
 
