@@ -9,11 +9,11 @@ from apps.communications.views import sio
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-# application = get_wsgi_application()
-django_app = get_wsgi_application()
-application = socketio.WSGIApp(sio, django_app)
+application = get_wsgi_application()
+# django_app = get_wsgi_application()
+# application = socketio.WSGIApp(sio, django_app)
 
-server = WebSocketServer(
-    # ('0.0.0.0', 8000), application, handler_class=WSGIHandler)
-    ('0.0.0.0', 8000), application)
-server.serve_forever()
+# server = WebSocketServer(
+#     # ('0.0.0.0', 8000), application, handler_class=WSGIHandler)
+#     ('0.0.0.0', 8000), application)
+# server.serve_forever()
