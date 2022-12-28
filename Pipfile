@@ -10,12 +10,12 @@ djangorestframework = "*"
 gevent = "*"
 gevent-websocket = "*"
 python-socketio = "*"
-psycopg2 = "*"
 pillow = "*"
 django-filter = "*"
 requests = "*"
 python-decouple = "*"
 dj-database-url = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 autopep8 = "*"
