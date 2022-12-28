@@ -44,3 +44,4 @@ database infra/promag
 
 - Facture Instance Image. continue in local
 
+//pipenv run pip freeze > requirements.txt
