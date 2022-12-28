@@ -18,6 +18,9 @@ def generate_colors():
 
 class Task(models.Model):
 
+    
+    
+    
     STATUES = (
         ('i', 'instance'),
         ('a', 'accepted'),
