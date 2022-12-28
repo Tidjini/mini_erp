@@ -1,11 +1,11 @@
 """"""
 import os
-import socketio
-from geventwebsocket import WebSocketServer
+# import socketio
+# from geventwebsocket import WebSocketServer
+# from apps.communications.views import sio
 
 # django
 from django.core.wsgi import get_wsgi_application
-from apps.communications.views import sio
 from decouple import config
 
 

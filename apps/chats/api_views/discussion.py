@@ -21,7 +21,7 @@ class DiscussionApiViewSet(viewsets.ModelViewSet):
             participants__user=user).order_by('id')
         return super().list(request, *args, **kwargs)
 
-    @staticmethod
+    # @staticmethod
     def get_user(id, *args, **kwargs):
         try:
             return Profile.objects.get(id=id)
@@ -35,7 +35,7 @@ class DiscussionApiViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return Response(serializer.data, *args, **kwargs)
 
-    @staticmethod
+    # @staticmethod
     def get_single_discussion(user_a, user_b):
         # get discussions
         user_a_discussions = [d for d, *_ in user_a.single_discussions]

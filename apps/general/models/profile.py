@@ -125,7 +125,7 @@ class Localisation(UtilsMixin):
 
 class ProfileAPI:
 
-    @staticmethod
+    # @staticmethod
     def username_auth(username, password, *args, **kwargs):
         user = Profile(username=username.lower(), password=password)
         user = user.exist_with_password("username")

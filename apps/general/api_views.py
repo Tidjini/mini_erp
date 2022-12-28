@@ -59,7 +59,7 @@ class ProfileListApiViewSet(viewsets.ModelViewSet):
 
 class AuthenticationAPI:
 
-    @staticmethod
+    # @staticmethod
     def response(user, *args, **kwargs):
         serializer = serializers.ProfileSerializer(user)
         response = auth_response(user, serializer)
@@ -67,14 +67,14 @@ class AuthenticationAPI:
 
     @api_view(('GET',))
     @permission_classes((permissions.IsAuthenticated,))
-    @staticmethod
+    # @staticmethod
     def token(request, *args, **kwargs):
         # set request header with Authorisation: token xxxxxxxxxxxxxx
         user = request.user
         return AuthenticationAPI.response(user)
 
     @api_view(('POST', ))
-    @staticmethod
+    # @staticmethod
     def username(request, *args, **kwargs):
         uname = request.data.get('username')
         pwd = request.data.get('password')
