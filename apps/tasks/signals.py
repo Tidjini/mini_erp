@@ -21,7 +21,8 @@ from .notification import NotificationAPI
 def notify_users(sender, instance, created, **kwargs):
 
     data = {key: val for key, val in instance.__dict__.items() if key in (
-            'id', 'label', 'description', 'statue', 'statue_label')}
+            'id', 'label', 'description', 'statue')}
+    data['statue_label'] = instance.statue_label
 
     print('created', created)
     if instance.statue == 'i' and instance.receiver:
