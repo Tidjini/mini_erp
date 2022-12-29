@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "apps.tasks",
 ]
 
+# clean this in first migrations
 AUTH_USER_MODEL = "general.Profile"
 
 
