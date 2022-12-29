@@ -13,7 +13,7 @@ class Profile(AbstractBaseUser, UtilsMixin):
     username = models.CharField(max_length=30, unique=True)
     nom = models.CharField(max_length=30, null=False, blank=False)
     prenom = models.CharField(max_length=30, null=False, blank=False)
-    additional = models.CharField(max_length=30, null=True, blank=True)
+    autre = models.CharField(max_length=30, null=True, blank=True)
     sex = models.IntegerField(default=1)
 
     is_admin = models.BooleanField(default=False)

@@ -27,8 +27,11 @@ def get_eviron_var(var_name):
 
 SECRET_KEY = get_eviron_var("SECRET_KEY")
 
+# clean this in first migrations
+AUTH_USER_MODEL = "general.Profile"
 
 INSTALLED_APPS = [
+    "apps.general",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,7 +44,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     # applications
-    "apps.general",
     "apps.hr_managments",
     "apps.communications",
     "apps.accountings",
@@ -50,9 +52,6 @@ INSTALLED_APPS = [
     "apps.chats",
     "apps.tasks",
 ]
-
-# clean this in first migrations
-AUTH_USER_MODEL = "general.Profile"
 
 
 MIDDLEWARE = [
