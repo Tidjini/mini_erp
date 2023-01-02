@@ -14,7 +14,7 @@ class Profile(AbstractBaseUser, UtilsMixin):
         ('n', 'non active'),
         ('ab', 'absent'),
     )
-    statue = models.CharField(max_length=2, choices=STATUES, default='i')
+    statue = models.CharField(max_length=2, choices=STATUES, default='u')
 
     # override primary key with char key, review for UUID
     # id = models.IntegerField(primary_key=True, auto_created=True
