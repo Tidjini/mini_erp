@@ -8,6 +8,14 @@ from apps.application.models import UtilsMixin
 # TODO set Tasks , Created Tasks in Managers
 class Profile(AbstractBaseUser, UtilsMixin):
 
+    STATUES = (
+        ('u', 'undefined'),
+        ('a', 'active'),
+        ('n', 'non active'),
+        ('ab', 'absent'),
+    )
+    statue = models.CharField(max_length=2, choices=STATUES, default='i')
+
     # override primary key with char key, review for UUID
     # id = models.IntegerField(primary_key=True, auto_created=True
     username = models.CharField(max_length=30, unique=True)
