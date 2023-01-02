@@ -72,9 +72,12 @@ class TaskLocationApiView(viewsets.ModelViewSet):
         task = request.query_params.get('task', None)
 
         if task is None and (request.user.is_admin or request.user.is_staff):
+            # for map usage
             self.get_of_today()
+            self.serializer_class = serializers.TaskLocationDetailsSerializer
         elif task.isdigit():
             task = int(task)
+            self.serializer_class = serializers.TaskLocationSerializer
             self.get_by_task(task)
         else:
             return Response({'detail': 'you must specify the task, {params: task<id:int>}'}, status=status.HTTP_404_NOT_FOUND)

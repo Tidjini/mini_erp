@@ -51,3 +51,16 @@ class TaskLocationSerializer(serializers.ModelSerializer):
         model = models.TaskLocation
         fields = '__all__'
         read_only_fields = 'id',
+
+
+class TaskLocationDetailsSerializer(serializers.ModelSerializer):
+
+    humain_duration = serializers.ReadOnlyField()
+    humain_distance = serializers.ReadOnlyField()
+    receiver = serializers.SlugRelatedField(
+        source="task", slug_field='receiver_name', read_only=True)
+
+    class Meta:
+        model = models.TaskLocation
+        fields = '__all__'
+        read_only_fields = 'id',
