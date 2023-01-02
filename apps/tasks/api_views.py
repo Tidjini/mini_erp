@@ -61,6 +61,12 @@ class TaskLocationApiView(viewsets.ModelViewSet):
     permission_classes = permissions.IsAuthenticated,
     pagination_class = None
 
+    def get_today_list():
+        pass
+
+    def get_task_list():
+        pass
+
     def list(self, request, *args, **kwargs):
 
         task = request.query_params.get('task', None)
