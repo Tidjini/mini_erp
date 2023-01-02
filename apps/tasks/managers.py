@@ -1,4 +1,5 @@
 from django.db.models import QuerySet, Q
+from datetime import datetime
 
 
 class TaskQuerySet(QuerySet):
@@ -39,3 +40,7 @@ class TaskLocationQuerySet(QuerySet):
     def location_task(self, task_id):
         # get list for user as creator
         return self.filter(task=task_id)
+
+    def today(self):
+        today = datetime.now().date()
+        return self.filter(task__created_at__date=today)

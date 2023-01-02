@@ -61,20 +61,22 @@ class TaskLocationApiView(viewsets.ModelViewSet):
     permission_classes = permissions.IsAuthenticated,
     pagination_class = None
 
-    def get_today_list():
-        pass
+    def get_of_today(self):
+        self.queryset = self.queryset.today()
 
-    def get_task_list():
-        pass
+    def get_by_task(self, task):
+        self.queryset = self.queryset.location_task(task)
 
     def list(self, request, *args, **kwargs):
 
         task = request.query_params.get('task', None)
 
-        if task is None and not task.isdigit():
+        if task is None and (request.user.is_admin or request.user.is_staff):
+            self.get_of_today()
+        elif task.isdigit():
+            task = int(task)
+            self.get_by_task(task)
+        else:
             return Response({'detail': 'you must specify the task, {params: task<id:int>}'}, status=status.HTTP_404_NOT_FOUND)
-
-        task = int(task)
-        self.queryset = self.queryset.location_task(task)
 
         return super().list(request, *args, **kwargs)
