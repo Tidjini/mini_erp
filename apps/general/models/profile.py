@@ -116,6 +116,10 @@ class Profile(AbstractBaseUser, UtilsMixin):
             return token.key
         return None
 
+    @property
+    def task_count(self):
+        return self.tasks.all().count()
+
     def __str__(self):
         return "username:{}, nom:{}".format(self.username, self.nom)
 
