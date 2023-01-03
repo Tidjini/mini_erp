@@ -120,6 +120,12 @@ class Profile(AbstractBaseUser, UtilsMixin):
     def task_count(self):
         return self.tasks.all().count()
 
+    @property
+    def distance(self):
+        if self.task_count == 0:
+            return 0
+        pass
+
     def __str__(self):
         return "username:{}, nom:{}".format(self.username, self.nom)
 
