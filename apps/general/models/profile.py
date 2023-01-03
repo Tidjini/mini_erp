@@ -2,10 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 
 from apps.application.models import UtilsMixin
-
+from apps.application.utils import meter_to_km, seconds_to_hours
 
 # Todo Vercel problem with staticmethods
 # TODO set Tasks , Created Tasks in Managers
+
+
 class Profile(AbstractBaseUser, UtilsMixin):
 
     STATUES = (
@@ -122,9 +124,14 @@ class Profile(AbstractBaseUser, UtilsMixin):
 
     @property
     def distance(self):
-        if self.task_count == 0:
-            return 0
-        pass
+        result = Profile.objects.annotate(
+            dist=models.Sum('tasks__paths__distance')).filter(id=self.id).values('dist')
+
+        print(result, type(result))
+        # if result['dist']:
+        #     km, m = meter_to_km(result['dist'])
+        #     return f'{km} Km, {m} M'
+        return "Non Définie"
 
     def __str__(self):
         return "username:{}, nom:{}".format(self.username, self.nom)

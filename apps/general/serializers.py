@@ -25,6 +25,7 @@ class LocalisationSerializer(serializers.ModelSerializer):
 class ProfileSerializer(ModelSerializerMixin):
     name = serializers.ReadOnlyField()
     task_count = serializers.ReadOnlyField()
+    distance = serializers.ReadOnlyField()
     localisation = LocalisationSerializer(read_only=True)
 
     password_one = serializers.CharField(
