@@ -69,7 +69,7 @@ def update_profile_state(request):
     try:
         profile = models.Profile.objects.get(pk=data['pk'])
         profile.statue = data['statue']
-        profile.save()
+        profile.save_base()
     except models.Profile.DoesNotExist:
         return Response({'Details': 'Profile does not exist'}, status=status.HTTP_400_BAD_REQUEST)
 
