@@ -39,7 +39,7 @@ class LocalisationApi(mixins.CreateModelMixin, mixins.UpdateModelMixin, viewsets
 
 class ProfileListApiViewSet(viewsets.ModelViewSet):
 
-    queryset = models.Profile.objects.all()
+    queryset = models.Profile.objects.order_by('id').all()
     serializer_class = serializers.ProfileSerializer
     permission_classes = permissions.AllowAny,
     filter_backends = filters.OrderingFilter,
