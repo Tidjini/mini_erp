@@ -37,7 +37,10 @@ urlpatterns = [
     path('api/auth/token/', general.AuthenticationAPI.token,
          name='Token Authentication'),
     path('api/auth/username/', general.AuthenticationAPI.username,
-         name='Username Authentication')
+         name='Username Authentication'),
+
+    path('api/profile/update-state/',
+         general.update_profile_state, name='Update Profile State')
 
 
 ]

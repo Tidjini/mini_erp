@@ -57,7 +57,7 @@ class ProfileListApiViewSet(viewsets.ModelViewSet):
         return Response(response, status=status.HTTP_201_CREATED, headers=headers)
 
 
-@api_view('PATCH')
+@api_view(['PATCH'])
 @permission_classes([permissions.IsAuthenticated])
 def update_profile_state(request):
 
@@ -65,7 +65,15 @@ def update_profile_state(request):
     if not user.is_admin and not user.is_staff:
         return Response({'Details': 'User must be a staff or administrator to patch the user profile state'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    print(request)
+    data = request.data
+    try:
+        profile = models.Profile.objects.get(pk=data['pk'])
+        profile.statue = data['statue']
+        profile.save()
+    except models.Profile.DoesNotExist:
+        return Response({'Details': 'Profile does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response({'data': request.data}, status=status.HTTP_200_OK)
 
 
 class AuthenticationAPI:
