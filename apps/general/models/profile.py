@@ -125,13 +125,18 @@ class Profile(AbstractBaseUser, UtilsMixin):
     @property
     def distance(self):
         result = Profile.objects.annotate(
-            dist=models.Sum('tasks__paths__distance')).filter(id=self.id).values('dist')
+            distance=models.Sum('tasks__paths__distance')).filter(id=self.id).values('distance')
 
-        print(result, type(result))
-        # if result['dist']:
-        #     km, m = meter_to_km(result['dist'])
-        #     return f'{km} Km, {m} M'
-        return "Non Définie"
+        raw = result[0].get('distance', 0)
+        if raw is None:
+            return "Non Définie"
+        km, m = meter_to_km(raw)
+        return f'{km} Km'
+
+    @property
+    def duration(self):
+        result = Profile.objects.annotate(duration=models.Sum(
+            'tasks__paths__duration')).filter(id=self.id).values('duration')
 
     def __str__(self):
         return "username:{}, nom:{}".format(self.username, self.nom)
