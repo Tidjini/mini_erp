@@ -138,6 +138,13 @@ class Profile(AbstractBaseUser, UtilsMixin):
         result = Profile.objects.annotate(duration=models.Sum(
             'tasks__paths__duration')).filter(id=self.id).values('duration')
 
+        raw = result[0].get('duration', 0)
+        if raw is None:
+            return "Non Définie"
+
+        hour, min = seconds_to_hours(raw)
+        return '{} H: {} MIN'.format(hour, min)
+
     def __str__(self):
         return "username:{}, nom:{}".format(self.username, self.nom)
 
