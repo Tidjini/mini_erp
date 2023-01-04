@@ -60,8 +60,8 @@ class TaskLocationDetailsSerializer(serializers.ModelSerializer):
     receiver = serializers.SlugRelatedField(
         source="task", slug_field='receiver_name', read_only=True)
 
-    task_description = serializers.SlugRelatedField(
-        source='task', slug_field='description', read_only=True)
+    task_label = serializers.SlugRelatedField(
+        source='task', slug_field='label', read_only=True)
 
     class Meta:
         model = models.TaskLocation
