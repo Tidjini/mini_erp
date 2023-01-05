@@ -60,10 +60,11 @@ class ProfileListApiViewSet(viewsets.ModelViewSet):
 def update_profile_state(request):
 
     user = request.user
-    if not user.is_admin and not user.is_staff:
+    data = request.data
+
+    if user.id != data['pk'] and not user.is_admin and not user.is_staff:
         return Response({'Details': 'User must be a staff or administrator to patch the user profile state'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    data = request.data
     try:
         profile = models.Profile.objects.get(pk=data['pk'])
         profile.statue = data['statue']
