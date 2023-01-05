@@ -75,7 +75,7 @@ class TaskLocationApiView(viewsets.ModelViewSet):
             # for map usage
             self.get_of_today()
             self.serializer_class = serializers.TaskLocationDetailsSerializer
-        elif task.isdigit():
+        elif task and task.isdigit():
             task = int(task)
             self.serializer_class = serializers.TaskLocationSerializer
             self.get_by_task(task)
